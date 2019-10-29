@@ -1,17 +1,19 @@
 import pygame
 import os
+from Vaenlased.enemy_1 import Mehike
 
 class Game:
     def __init__(self):
-        self.width = 1000
-        self.height = 700
+        self.width = 1366
+        self.height = 768
         self.win = pygame.display.set_mode((self.width, self.height))
-        self.enemys = []
+        self.enemys = [Mehike()]
         self.towers = []
         self.lives = 100
         self.money = 1000
         self.bg = pygame.image.load(os.path.join("Assets", "taust.png"))
-        self.clicks = [] # pärast eemaldada
+        self.bg = pygame.transform.scale(self.bg, (self.width,self.height))
+        self.clicks = []
         
     def run(self):
         run = True
@@ -26,16 +28,16 @@ class Game:
                 pos = pygame.mouse.get_pos()
                 
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    self.clicks.append(pos)
-                    print(pos)
+                    pass
                     
             self.draw()
         pygame.quit()
     
     def draw(self):
         self.win.blit(self.bg, (0, 0))
-        for p in self.clicks:
-            pygame.draw.circle(self.win, (255,0,0), (p[0], p[1]), 5, 0)
+        for en in self.enemys:
+            en.draw(self.win)
+            
         pygame.display.update()
         
 g = Game()
