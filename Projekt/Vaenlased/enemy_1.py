@@ -5,7 +5,7 @@ from .enemy import Enemy
 imgs = []
 for x in range(10):
     add_str = str(x)
-    if x < 4:
+    if x < 2: # framide arv
         imgs.append(pygame.transform.scale(
         pygame.image.load(os.path.join("Assets/Vaenlased", "vaenlane_1_" + add_str + ".png")),
         (64, 64)))
@@ -15,6 +15,6 @@ class Mehike(Enemy):
         super().__init__()
         self.name = "Mehike"
         self.money = 1
-        self.max_health = 1
+        self.max_health = 5
         self.health = self.max_health
         self.imgs = imgs[:]
